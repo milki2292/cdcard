@@ -14,6 +14,14 @@ public class CreditCard {
         this.cardNumber = cardNumber;
     }
 
+    public static CreditCard of(CreditCardData ccData) {
+        CreditCard cc = new CreditCard(ccData.getNumber());
+        cc.cardLimit = ccData.limit;
+        cc.balance = ccData.balance;
+
+        return cc;
+    }
+
     public void assignLimit(BigDecimal newLimit) {
         if (BigDecimal.valueOf(100).compareTo(newLimit) == 1) {
             throw new CreditBelowLimitException();
